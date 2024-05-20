@@ -1,0 +1,34 @@
+
+<div class="container">
+    <form class="form-inline">
+        <div class="form-group mx-sm-3 mb-2 mt-2 ">
+        <h4>Nom voyage :</h4> </div>
+        <div class="from-group mx-sm-3 mb-2 mt-2">
+        <input type="text" #nom [(ngModel)]="searcheTrem" name="searchTerm" class="form-control">
+      
+    </div>
+       
+        </form>
+    <div class="card shadow mb-4">      
+    <div class="card-body">
+    <table class="table table-striped">
+        <thead>
+    <tr> <th>Id</th><th>Nom</th> <th>Capacite</th> <th>Date voyage</th><th>Type</th> <th *ngIf="authService.isAdmin()">Action</th></tr>
+</thead>
+    <tbody *ngFor="let voyage of voyages | searchFilter:searcheTrem">
+    <tr >
+    <td>{{voyage.idvoyage}}</td>
+    <td>{{voyage.nomvoyage}}</td>
+    <td>{{voyage.capacite}}</td>
+    <td>{{voyage.datevoyage| date:'dd/MM/yyyy'}}</td>
+    <td>{{voyage.type.nomType}}</td>
+    <td *ngIf="authService.isAdmin()">
+        <a class="btn btn-danger" (click)="supprimervoyage(voyage)">Supprimer</a>&nbsp;
+        <a class="btn btn-success" [routerLink]="['/updatevoyage',voyage.idvoyage]">Modifier</a>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>

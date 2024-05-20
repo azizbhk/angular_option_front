@@ -1,0 +1,39 @@
+<div class="container">
+    <div>
+    <h2>Ajouter un voyage :</h2>
+    </div>
+    <form >
+        <div class="col-sm-2 col-md-2 col-lg-2">
+        <label >ID voyage</label>
+        <input type="text" [(ngModel)]= "newvoyage.idvoyage"
+        name="idvoyage" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4" >
+        <label >Nom voyage</label>
+        <input type="text"[(ngModel)]= "newvoyage.nomvoyage"
+        name="nomvoyage" class="form-control">
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+        <label >Capacite</label>
+        <input type="number" [(ngModel)]= "newvoyage.capacite"
+        name="capacite" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+        <label >Date voyage</label>
+        <input type="date" [(ngModel)]= "newvoyage.datevoyage"
+        name="datevoyage" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Types</label>
+            <select class="form-control form-control-lg" id="idType" name="idType"
+            [(ngModel)]="newIdType">
+             <option *ngFor="let ty of types" [value]="ty.idType" >
+             {{ty.nomType}}
+            </option>
+            </select>
+            </div>
+        <div class="mt-2">
+        <button type="submit" (click)="addvoyage()"class="btn btn-success">Ajouter</button>
+        </div>
+        </form>
+        </div>

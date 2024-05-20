@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+        <h4>Type </h4>
+        <select class="form-control form-control" id="idType" name="idType"
+        [(ngModel)]="idType" (change)="onChange()">
+        <option *ngFor="let ty of types" value="{{ty.idType}}">
+        {{ty.nomType}}
+         </option>
+        </select>
+        </div>
+        
+    <div class="card shadow mb-4">
+    <div class="card-body">
+    <table class="table table-striped">
+        <thead>
+    <tr> <th>Id</th><th>Nom</th> <th>Capacite</th> <th>Date voyage</th><th>Type</th> <th *ngIf="authService.isAdmin()">Action</th></tr>
+</thead>
+    <tbody *ngFor="let voyage of voyages">
+    <tr >
+    <td>{{voyage.idvoyage}}</td>
+    <td>{{voyage.nomvoyage}}</td>
+    <td>{{voyage.capacite}}</td>
+    <td>{{voyage.datevoyage| date:'dd/MM/yyyy'}}</td>
+    <td>{{voyage.type.nomType}}</td>
+    <td *ngIf="authService.isAdmin()">
+        <a class="btn btn-danger" (click)="supprimervoyage(voyage)">Supprimer</a>&nbsp;
+        <a class="btn btn-success" [routerLink]="['/updatevoyage',voyage.idvoyage]">Modifier</a>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
